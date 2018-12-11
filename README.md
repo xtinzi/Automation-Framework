@@ -65,27 +65,27 @@ This module simply for loggging information.
 8.      BaseTest
 This Class contains methods used by the Tests.
 
-### Running The tests
+## Running The tests
 
-## Using Maven
+### Using Maven
 
 Open a command window and:
 
-# Clone the project   
+#### Clone the project   
 
-# Change to directory with jar file
+#### Change to directory with jar file
     cd New_Project\target
     
-# Create jar file
+#### Create jar file
     mvn clean package -DskipTests
 
-# Change to directory with jar file
+#### Change to directory with jar file
     cd New_Project\target
 
-# Run the Jar File
+#### Run the Jar File
     Java ....
 
-# Open generated_folder and check report for results.
+#### Open generated_folder and check report for results.
 
 ## On intelliJ
 
