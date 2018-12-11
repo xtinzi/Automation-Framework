@@ -2,7 +2,10 @@
 java-maven-spring-selenium-basic API testing
 - The automation framework was developed to simulate user control of web pages, it is Data Driven. The framework also does basic API testing by retrieving json responces from API calls made to the DOG API.
 
-# Testing Framework incoorporating all open source technologies
+# Testing Framework incoorporating open source technologies
+
+# Why use these technologies:
+
 
 ### Testing approach
     Data Driven Testing
@@ -18,7 +21,7 @@ java-maven-spring-selenium-basic API testing
     Logs 
 
 
-###Pre-requisites:
+### Pre-requisites:
 Java Programming knowledge
 Selenium Web Driver knowledge
 
@@ -64,27 +67,27 @@ This Class contains methods used by the Tests.
 
 ### Running The tests
 
-##Using Maven
-#clone the project
+## Using Maven
 
-Open a command window and run:
+Open a command window and:
 
-#create jar file
-mvn clean package -DskipTests 
+# Clone the project   
 
-#change to directory with jar file
-cd New_Project\target
+# Change to directory with jar file
+    cd New_Project\target
+    
+# Create jar file
+    mvn clean package -DskipTests
 
-#run the jar file
-java ......
+# Change to directory with jar file
+    cd New_Project\target
 
-Opened generated_folder and check report for results.
+# Run the Jar File
+    Java ....
 
-##On intelliJ
+# Open generated_folder and check report for results.
 
-
-
-
+## On intelliJ
 
 ### Technology used 
     Java 1.8
