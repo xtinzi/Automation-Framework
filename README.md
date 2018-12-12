@@ -84,6 +84,7 @@ Open a command window and:
     
 #### How to Create your own jar file
     cd New_Project
+    delete the target directory
     mvn clean package -DskipTests    
 
 #### Open generated_folder and check report for results.
