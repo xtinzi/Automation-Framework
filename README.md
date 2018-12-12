@@ -103,8 +103,8 @@ Open a command window and:
 #### import the the project as a maven project
 
 #### set up VM options as shown in the picture below
+![image1](https://user-images.githubusercontent.com/7296111/49867347-de76e380-fe12-11e8-9f7b-aa53cb4ba897.jpg)
 
-https://user-images.githubusercontent.com/7296111/49867347-de76e380-fe12-11e8-9f7b-aa53cb4ba897.jpg
 
 #### The spreadsheet controls which tests you are running, from shows which test to start with and to is the last test to run
 
