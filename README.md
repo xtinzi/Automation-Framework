@@ -1,10 +1,17 @@
 # Automation-Framework
 java-maven-spring-selenium-basic API testing
-- The automation framework was developed to simulate user control of web pages, it is Data Driven. The framework also does basic API testing by retrieving json responces from API calls made to the DOG API.
+- The automation framework was developed to simulate user control of web pages, it is Data Driven. The framework also does basic API testing by retrieving json responses from API calls made to the DOG API.
 
-# Testing Framework incoorporating open source technologies
+# Testing Framework incorporating open source technologies
 
 # Why use these technologies:
+The Assessment tests basic automation knowledge and basic API testing so it can be done using existing frameworks. 
+
+The front end website used suggests that protractor should be used to test it, which then introduces the idea of using node. That would be the most simple way to do the assignment and it would be quick to setup. I've worked with protractor and other frameworks that use node and my biggest issue with these frameworks was continuous integration with other tools. 
+
+So when node modules were removed or updated, it affected the project and was therefore unreliable, especially for a framework that is integrated to automated builds. So I try to avoid using node and the best way to do this is to build a framework that uses selenium and relies purely on maven to run, giving you control over what affects your project. 
+
+This is the longer way to do this simple project but time lost in the initial phase of the framework is saved later on when you avoid problems from dependencies that are beyond your control. Also with this approach, debugging through code becomes easier and you don't have to pause screens to debug selenium or rely on the log file.
 
 
 ### Testing approach
