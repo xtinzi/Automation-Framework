@@ -96,7 +96,7 @@ Open a command window and:
     
 
 
-#### Open generated_folder and check reports for results.
+#### Open generated_folder and check Report folder for report html file where you can view the results(use chrome browser to view the report).
 
 ### Using an IDE(intelliJ IDEA) to run the tests and debug through the code
 
