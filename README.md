@@ -83,6 +83,7 @@ Open a command window and:
     java -Dspring.profiles.active=test -jar automation-1.0-SNAPSHOT.jar
     
 #### How to Create your own jar file
+    cd Automation-Framework
     cd New_Project
     delete the target directory
     mvn clean package -DskipTests    
