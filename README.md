@@ -72,22 +72,22 @@ This Class contains methods used by the Tests.
 Open a command window and:
 
 #### Clone the project   
-
-#### Change to directory with jar file
-    cd New_Project\target
     
-#### Create jar file
-    mvn clean package -DskipTests
-
+#### Copy the jar file(automation.jar) from New_Project\target
+    mvn clean package -DskipTests    
+    
 #### Change to directory with jar file
-    cd New_Project\target
+    cd MyFolder
 
 #### Run the Jar File
-    Java ....
+    java -Dspring.profiles.active=test -jar automation-1.0-SNAPSHOT.jar
+    
+#### How to Create your own jar file
+    cd New_Project
+    mvn clean package -DskipTests    
 
 #### Open generated_folder and check report for results.
 
-## On intelliJ
 
 ### Technology used 
     Java 1.8
