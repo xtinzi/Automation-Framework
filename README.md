@@ -96,7 +96,19 @@ Open a command window and:
     
 
 
-#### Open generated_folder and check report for results.
+#### Open generated_folder and check reports for results.
+
+### Using an IDE(intelliJ IDEA) to run the tests and debug through the code
+
+#### import the the project as a maven project
+
+#### set up VM options as shown in the picture below
+
+https://user-images.githubusercontent.com/7296111/49867347-de76e380-fe12-11e8-9f7b-aa53cb4ba897.jpg
+
+#### The spreadsheet controls which tests you are running, from shows which test to start with and to is the last test to run
+
+https://user-images.githubusercontent.com/7296111/49867348-df0f7a00-fe12-11e8-854c-820cfcc28280.jpg
 
 
 ### Technology used 
