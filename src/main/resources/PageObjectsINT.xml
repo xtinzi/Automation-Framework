@@ -1,0 +1,21 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<app>
+    <page name = 'HomePage'>
+        <!--All Elements Used-->
+
+        <element name='Table' by='css' identifier='//*[@id="navTabButtonChangeProfileImageLink"]/img' />
+        <element name='Add Button' by='css' identifier='body > table > thead > tr:nth-child(2) > td > button' />
+        <element name='FirstName' by='name' identifier='FirstName' />
+        <element name='LastName' by='name' identifier='LastName' />
+        <element name='UserName' by='name' identifier='UserName' />
+        <element name='Password' by='name' identifier='Password' />
+        <element name='Radio Company AAA' by='css' identifier='body > div.modal.ng-scope > div.modal-body > form > table > tbody > tr:nth-child(5) > td:nth-child(2) > label:nth-child(1)' />
+        <element name='Radio Company BBB' by='css' identifier='body > div.modal.ng-scope > div.modal-body > form > table > tbody > tr:nth-child(5) > td:nth-child(2) > label:nth-child(2)' />
+        <element name='Role Dropdown' by='name' identifier='RoleId'/>
+        <element name='Email' by='name' identifier='Email' />
+        <element name='CellPhone' by='name' identifier='Mobilephone' />
+        <element name='SAVE BUTTON' by='css' identifier='body > div.modal.ng-scope > div.modal-footer > button.btn.btn-success' />
+
+    </page>
+
+</app>

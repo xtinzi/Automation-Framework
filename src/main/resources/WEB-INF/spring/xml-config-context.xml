@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- scans for annotated classes in the com.company package -->
+
+    <context:component-scan base-package="com.project.demo.environments" />
+    <!-- enables annotation based configuration -->
+    <context:annotation-config />
+
+    <beans profile="dev">
+
+        <!-- allows for ${} replacement in the spring xml configuration from the
+17
+            application-default.properties, application-dev files on the classpath -->
+
+        <context:property-placeholder
+
+
+        ignore-unresolvable="true" />
+
+        <!-- scans for annotated classes in the com.env.dev package -->
+
+        <context:component-scan base-package="com.project.demo.environments.dev" />
+    </beans>
+
+    <beans profile="int">
+        <!-- allows for ${} replacement in the spring xml configuration from the
+            application-default.properties, application-test files on the classpath -->
+        <context:property-placeholder
+        location="classpath:properties/application-default.properties, classpath:properties/application-test.properties"
+        ignore-unresolvable="true" />
+        <!-- scans for annotated classes in the com.env.test package -->
+
+        <context:component-scan base-package="com.project.demo.environments.test" />
+    </beans>
+    <beans profile="qa">
+
+        <!-- allows for ${} replacement in the spring xml configuration from the
+            application-default.properties, application-prod files on the classpath -->
+        <context:property-placeholder
+        location="classpath:properties/application-default.properties, classpath:properties/application-qa.properties"
+        ignore-unresolvable="true" />
+        <!-- scans for annotated classes in the com.env.prod package -->
+        <context:component-scan base-package="com.project.demo.environments.qa" />
+    </beans>
+
+</beans>
