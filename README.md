@@ -107,8 +107,9 @@ Open a command window and:
 
 
 #### The spreadsheet controls which tests you are running, from shows which test to start with and to is the last test to run
+![image2](https://user-images.githubusercontent.com/7296111/49867348-df0f7a00-fe12-11e8-854c-820cfcc28280.jpg)
 
-https://user-images.githubusercontent.com/7296111/49867348-df0f7a00-fe12-11e8-854c-820cfcc28280.jpg
+
 
 
 ### Technology used 
