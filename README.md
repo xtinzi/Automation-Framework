@@ -82,7 +82,6 @@ Open a command window and:
     
 #### Create the executable jar file
     cd Automation-Framework
-    cd New_Project
     delete the target directory if its there
     mvn clean package -DskipTests 
     
