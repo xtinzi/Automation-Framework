@@ -73,8 +73,13 @@ Open a command window and:
 
 #### Clone the project   
     
-#### Copy the jar file(automation.jar) from New_Project\target
-    mvn clean package -DskipTests    
+#### Create the executable jar file
+    cd Automation-Framework
+    cd New_Project
+    delete the target directory if its there
+    mvn clean package -DskipTests 
+    
+#### Copy the jar file(automation-1.0-SNAPSHOT.jar) from New_Project\target into your a folder e.g MyFolder
     
 #### Change to directory with jar file
     cd MyFolder
@@ -82,11 +87,7 @@ Open a command window and:
 #### Run the Jar File
     java -Dspring.profiles.active=test -jar automation-1.0-SNAPSHOT.jar
     
-#### How to Create your own jar file
-    cd Automation-Framework
-    cd New_Project
-    delete the target directory
-    mvn clean package -DskipTests    
+
 
 #### Open generated_folder and check report for results.
 
