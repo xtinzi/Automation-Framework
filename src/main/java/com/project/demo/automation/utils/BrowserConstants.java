@@ -17,7 +17,7 @@ public enum BrowserConstants {
 
     @Override
     public String toString() {
-            return browser;
+        return browser;
     }
 
 }

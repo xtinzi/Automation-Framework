@@ -5,13 +5,11 @@ public class ScreenShotConfiguration {
 
     private String screenShotFileName;
 
-    public ScreenShotConfiguration(String screenShotFileName)
-    {
+    public ScreenShotConfiguration(String screenShotFileName) {
         this.screenShotFileName = screenShotFileName;
     }
 
-    public String getScreenShotFileName()
-    {
+    public String getScreenShotFileName() {
         return screenShotFileName;
     }
 

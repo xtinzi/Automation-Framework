@@ -12,10 +12,11 @@ public class DogBreed {
 
     }
 
-    public DogBreed(){
+    public DogBreed() {
 
 
     }
+
     public String getBreed() {
         return breed;
     }

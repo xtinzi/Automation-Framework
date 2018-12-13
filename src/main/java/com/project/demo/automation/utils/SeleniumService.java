@@ -43,10 +43,10 @@ public class SeleniumService extends TestCase {
 
     protected static BrowserConfig config;
     protected static DriverService service;
-    protected  WebDriver driver;
+    protected WebDriver driver;
     protected static WebDriverUtil webUtil;
-    protected  RetrieveTestData retrieveTestData;
-   // RecordVideo recordVideo;
+    protected RetrieveTestData retrieveTestData;
+    // RecordVideo recordVideo;
     protected HomePage page;
     private static EnvironmentProperties environmentPropertiesCopy;
     static ApplicationContext context;
@@ -56,13 +56,14 @@ public class SeleniumService extends TestCase {
     protected EnvironmentProperties environmentProperties;
     @Autowired
     private GenericEnv env;
-    protected static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(new Object() { }.getClass().getEnclosingClass());
+    protected static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(new Object() {
+    }.getClass().getEnclosingClass());
     public LoginDetail loginDetail;
     static int numberOfDriverInstances = 0;
 
     //Before executing a class, this method creates a chrome service
 
-    protected  List<Throwable> exceptions = null;
+    protected List<Throwable> exceptions = null;
 
     @BeforeClass
     public static void createService() throws IOException {
@@ -71,19 +72,15 @@ public class SeleniumService extends TestCase {
         environmentPropertiesCopy = context.getBean(EnvironmentProperties.class);
 
         createTestFiles(environmentPropertiesCopy);
-        if(config == null)
-        {
-            LocationConstants.DATA_SHEET_FILE=environmentPropertiesCopy.getTestDatasheet();
+        if (config == null) {
+            LocationConstants.DATA_SHEET_FILE = environmentPropertiesCopy.getTestDatasheet();
             config = BrowserUtil.getInstance().getChromeService();
         }
 
-        if(service == null) {
+        if (service == null) {
             service = config.getService();
             service.start();
-        }
-
-        else if (!service.isRunning())
-        {
+        } else if (!service.isRunning()) {
             service.start();
         }
     }
@@ -92,94 +89,85 @@ public class SeleniumService extends TestCase {
         return extentTest;
     }
 
-    public  void setExtentTest(ExtentTest extentTest) {
+    public void setExtentTest(ExtentTest extentTest) {
         this.extentTest = extentTest;
     }
 
-    public static  LogStatus getLogStatus() {
+    public static LogStatus getLogStatus() {
         return logStatus;
     }
 
-    public  void setLogStatus(LogStatus logStatus) {
+    public void setLogStatus(LogStatus logStatus) {
         this.logStatus = logStatus;
     }
     /*
-    ** setUp a selenium service
+     ** setUp a selenium service
      */
 
     @Override
     @Before
-    public void setUp() throws Exception
-    {
-        environmentPropertiesCopy =environmentProperties;
-        if(env instanceof IntEnv){
+    public void setUp() throws Exception {
+        environmentPropertiesCopy = environmentProperties;
+        if (env instanceof IntEnv) {
             setEnvironment(((IntEnv) env).getEnvName());
-        }
-
-        else{
+        } else {
             throw new Exception("Spring Boot Environment Properties not set.");
         }
 
-        if(this.driver == null)
-        {
-            this.driver = new RemoteWebDriver(service.getUrl(),config.getCapabilities());
+        if (this.driver == null) {
+            this.driver = new RemoteWebDriver(service.getUrl(), config.getCapabilities());
             numberOfDriverInstances++;
         }
-        if(retrieveTestData==null){
-            retrieveTestData =new RetrieveTestData(environmentProperties.getTestDatasheet());
+        if (retrieveTestData == null) {
+            retrieveTestData = new RetrieveTestData(environmentProperties.getTestDatasheet());
         }
         loginDetail = new RetrieveTestData(environmentProperties.getTestDatasheet()).getLoginDetail();
-        log.info("Environment "+environmentProperties.getTestUrl());
-        page =new HomePage(driver);
-        pageObjects =new PageObjects(environmentProperties.getTestPageObjects());
+        log.info("Environment " + environmentProperties.getTestUrl());
+        page = new HomePage(driver);
+        pageObjects = new PageObjects(environmentProperties.getTestPageObjects());
         page.setPageObjects(pageObjects);
-        page.load(environmentProperties.getTestUrl(),loginDetail.getUserName(),loginDetail.getPassword());
+        page.load(environmentProperties.getTestUrl(), loginDetail.getUserName(), loginDetail.getPassword());
 
         exceptions = new ArrayList<>();
 
         // Initialize and Instantiate Extent Report
-        extentReports = new ExtentReports(page.REPORT_DIRECTORY+"TestAutomationReport.html", false, NetworkMode.ONLINE);
+        extentReports = new ExtentReports(page.REPORT_DIRECTORY + "TestAutomationReport.html", false, NetworkMode.ONLINE);
         extentReports.addSystemInfo("Environment", getEnvironment().toUpperCase());
         page.setMainWindowHandle(page.getDriver().getWindowHandle());
 
     }
-    /*
-    ** Create Web utilities
-     */
-    protected synchronized WebDriverUtil createWebUtil(){
 
-        if(driver == null)
-        {
+    /*
+     ** Create Web utilities
+     */
+    protected synchronized WebDriverUtil createWebUtil() {
+
+        if (driver == null) {
             driver = new ChromeDriver();
             webUtil = new WebDriverUtil(driver);
-        }
-        else if(webUtil == null)
-        {
+        } else if (webUtil == null) {
             webUtil = new WebDriverUtil(driver);
         }
-        return  webUtil;
-    }
-    public static WebDriverUtil getWebUtil()
-    {
         return webUtil;
     }
 
-    protected static void  setWebUtil(WebDriverUtil webUtil) {
-        if (SeleniumService.webUtil == null)
-        {
+    public static WebDriverUtil getWebUtil() {
+        return webUtil;
+    }
+
+    protected static void setWebUtil(WebDriverUtil webUtil) {
+        if (SeleniumService.webUtil == null) {
             SeleniumService.webUtil = webUtil;
 
         }
     }
 
-    public static DriverService getService()
-    {
+    public static DriverService getService() {
         return service;
     }
-    protected static void  setService( DriverService service)
-    {
-        if (SeleniumService.service == null)
-        {
+
+    protected static void setService(DriverService service) {
+        if (SeleniumService.service == null) {
             SeleniumService.service = service;
         }
     }
@@ -196,10 +184,10 @@ public class SeleniumService extends TestCase {
             };
             retrieveTestData = new RetrieveTestData(String.valueOf(LocationConstants.DATA_SHEET_FILE));
             loginDetail = retrieveTestData.getLoginDetail();
-            if(loginDetail.getBrowser().equalsIgnoreCase(String.valueOf(BrowserConstants.CHROME))) {
+            if (loginDetail.getBrowser().equalsIgnoreCase(String.valueOf(BrowserConstants.CHROME))) {
                 driver.get(AbstractPage.getURL(loadProperties, loginDetail, teamMember));
                 driver.get(AbstractPage.getPlainURL(loadProperties, loginDetail));
-            }else{
+            } else {
                 driver.get(AbstractPage.getPlainURL(loadProperties, loginDetail));
                 abstractPage.enterCredentials(loginDetail);
             }
@@ -208,7 +196,7 @@ public class SeleniumService extends TestCase {
         return driver;
     }
 
-    public WebDriver launchNewService(LoginDetail loginDetail) throws  AWTException, InterruptedException {
+    public WebDriver launchNewService(LoginDetail loginDetail) throws AWTException, InterruptedException {
         driver = new RemoteWebDriver(service.getUrl(), config.getCapabilities());
         LoadProperties loadProperties = new LoadProperties();
         AbstractPage abstractPage = new AbstractPage(driver) {
@@ -216,18 +204,20 @@ public class SeleniumService extends TestCase {
                 return null;
             }
         };
-        if(loginDetail.getBrowser().equalsIgnoreCase(String.valueOf(BrowserConstants.CHROME))) {
+        if (loginDetail.getBrowser().equalsIgnoreCase(String.valueOf(BrowserConstants.CHROME))) {
             driver.get(AbstractPage.getURLs(loadProperties, loginDetail));
             driver.get(AbstractPage.getPlainURL(loadProperties, loginDetail));
-        }else{
+        } else {
             driver.get(AbstractPage.getPlainURL(loadProperties, loginDetail));
             abstractPage.enterCredentials(loginDetail);
         }
         return driver;
     }
+
     public static EnvironmentProperties getEnvironmentProperties() {
         return environmentPropertiesCopy;
     }
+
     public String getEnvironment() {
         return environment;
     }
@@ -235,44 +225,44 @@ public class SeleniumService extends TestCase {
     public static void setEnvironment(String environment) {
         SeleniumService.environment = environment;
     }
+
     @Override
     @After
-    public void tearDown()
-    {
+    public void tearDown() {
         try {
-            if(this.driver != null)
-            {
+            if (this.driver != null) {
                 this.driver.quit();
                 numberOfDriverInstances--;
 
             }
-            if(retrieveTestData!=null){
-                retrieveTestData=null;
+            if (retrieveTestData != null) {
+                retrieveTestData = null;
             }
            /* if (recordVideo != null) {
                 recordVideo.stopRecording();
             }*/
-        }catch (Exception ex){
+        } catch (Exception ex) {
             log.error(ex.getMessage());
         }
-        if(exceptions!=null){
-            if(!exceptions.isEmpty()){
-                log.error("Number of Exceptions = "+exceptions.size());
+        if (exceptions != null) {
+            if (!exceptions.isEmpty()) {
+                log.error("Number of Exceptions = " + exceptions.size());
             }
-            Assert.assertEquals(0,exceptions.size());
+            Assert.assertEquals(0, exceptions.size());
         }
         //this is so a failure is picked up in an event of exceptions
 
     }
+
     /*
-    **Stops the selenium service after test class executes
-    * Even when test fails
-    */
+     **Stops the selenium service after test class executes
+     * Even when test fails
+     */
     @AfterClass
     public static void stopService() {
 
         log.info("Stopping Selenium Service");
-        if (service != null && numberOfDriverInstances==0) {
+        if (service != null && numberOfDriverInstances == 0) {
             service.stop();
         }
     }
@@ -280,10 +270,10 @@ public class SeleniumService extends TestCase {
     /**
      * this method creates the test files; main folder,data directory and report directory
      */
-    public static void createTestFiles(EnvironmentProperties environmentProperties){
+    public static void createTestFiles(EnvironmentProperties environmentProperties) {
         File parentDirectory = new File(LocationConstants.MAIN_FOLDER);
 
-        log.info("\nTest Files Location : "+ parentDirectory.getAbsolutePath());
+        log.info("\nTest Files Location : " + parentDirectory.getAbsolutePath());
         File dataDirectory = new File(LocationConstants.DATA_FOLDER);
         File reportDir = new File(LocationConstants.REPORT_DIRECTORY);
         File driverDir = new File(LocationConstants.DRIVER_DIR);
@@ -292,16 +282,16 @@ public class SeleniumService extends TestCase {
             parentDirectory.mkdir();
         }
 
-        if(!dataDirectory.exists()){
+        if (!dataDirectory.exists()) {
             dataDirectory.mkdir();
         }
-        if(!reportDir.exists()){
+        if (!reportDir.exists()) {
             reportDir.mkdir();
         }
-        if(!driverDir.exists()){
+        if (!driverDir.exists()) {
             driverDir.mkdir();
         }
-        if(!pageObjectDir.exists()){
+        if (!pageObjectDir.exists()) {
             pageObjectDir.mkdir();
         }
 
@@ -324,20 +314,19 @@ public class SeleniumService extends TestCase {
             if (!new File(LocationConstants.PAGE_OBJECT_DIR + extractedPageObjectsFileName).exists()) {
                 moveFile("/" + extractedPageObjectsFileName, extractedPageObjectsFileName, LocationConstants.PAGE_OBJECT_DIR);
             }
-        }catch (IOException ex){
+        } catch (IOException ex) {
             log.error(ex.getMessage());
         }
     }
 
     public static void moveFile(String inputPath, String inputFile, String outputPath) throws IOException {
-        URL url =AbstractPage.class.getResource(inputPath);
-        InputStream in =url.openStream();
-        File dir = new File (outputPath);
+        URL url = AbstractPage.class.getResource(inputPath);
+        InputStream in = url.openStream();
+        File dir = new File(outputPath);
         OutputStream out = new FileOutputStream(outputPath + inputFile);
-        try{
+        try {
             //create output directory if it doesn't exist
-            if (!dir.exists())
-            {
+            if (!dir.exists()) {
                 dir.mkdirs();
             }
 
@@ -348,20 +337,19 @@ public class SeleniumService extends TestCase {
             }
             // write the output file
             out.flush();
-        }
-        finally{
-            if(in!=null){
-                try{
-                    in.close();
-                }catch (IOException e) {
-                    log.error(e.getMessage());
-                }
-            }
+        } finally {
+            if (in != null) {
                 try {
-                    out.close();
+                    in.close();
                 } catch (IOException e) {
                     log.error(e.getMessage());
                 }
+            }
+            try {
+                out.close();
+            } catch (IOException e) {
+                log.error(e.getMessage());
+            }
         }
     }
 }

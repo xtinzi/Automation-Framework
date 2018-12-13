@@ -19,28 +19,30 @@ import java.util.Map;
 
 public class PageObjects {
 
-    private  Document doc = null;
+    private Document doc = null;
     private Node xmlElement = null;
     private Map<String, String> mapElement = new HashMap<String, String>();
 
     private String xmlElementNode = "element";
-    private  String fileName= "";
-    String xmlPageNode="page";
+    private String fileName = "";
+    String xmlPageNode = "page";
 
     //TODO
     //Remove the reference of this default constructor
-    public PageObjects(){}
+    public PageObjects() {
+    }
 
-    public PageObjects(String fileName){
-        this.fileName =fileName;
+    public PageObjects(String fileName) {
+        this.fileName = fileName;
     }
 
     public Map<String, String> getMapElement() {
         return mapElement;
     }
+
     Logger log = Logger.getLogger(PageObjects.class);
 
-    public void getDOM(String xmlFileName)throws Exception{
+    public void getDOM(String xmlFileName) throws Exception {
         File fXmlFile = new File(xmlFileName);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -62,12 +64,12 @@ public class PageObjects {
         } catch (Exception e) {
             //log.error("getAllElementsInModule: ");
             //log.error(e.getMessage());
-            }
+        }
         return nodeModules;
     }
 
     //Return xml element xpath
-    public void getXMLElement(String strElementName,String xmlElementNode) {
+    public void getXMLElement(String strElementName, String xmlElementNode) {
         String strXpath;
         try {
             XPathFactory factory = XPathFactory.newInstance();
@@ -93,7 +95,7 @@ public class PageObjects {
         try {
             if (xmlElement != null) {
                 mapElement.put("name", xmlElement.getAttributes().getNamedItem("name").getNodeValue());
-                if(xmlElement.getAttributes().getNamedItem("mandatory") != null) {
+                if (xmlElement.getAttributes().getNamedItem("mandatory") != null) {
                     mapElement.put("mandatory", xmlElement.getAttributes().getNamedItem("mandatory").getNodeValue());
                 }
                 mapElement.put("by", xmlElement.getAttributes().getNamedItem("by").getNodeValue());
@@ -133,12 +135,13 @@ public class PageObjects {
         id(5), partialLinkText(6), tagName(7), className(8);
 
         private int value;
+
         private Identifier(int value) {
             this.value = value;
         }
     }
 
-    public By getByElement(String xmlPageName,String strElementName) {
+    public By getByElement(String xmlPageName, String strElementName) {
         By by = null;
         try {
             getDOM(fileName);
@@ -148,21 +151,29 @@ public class PageObjects {
 
                 Identifier id = Identifier.valueOf(strBy);
                 switch (id) {
-                    case css:  by = By.cssSelector(getIdentifier(xmlPageName, strElementName));
+                    case css:
+                        by = By.cssSelector(getIdentifier(xmlPageName, strElementName));
                         break;
-                    case xpath: by = By.xpath(getIdentifier(xmlPageName, strElementName));
+                    case xpath:
+                        by = By.xpath(getIdentifier(xmlPageName, strElementName));
                         break;
-                    case name: by = By.name(getIdentifier(xmlPageName, strElementName));
+                    case name:
+                        by = By.name(getIdentifier(xmlPageName, strElementName));
                         break;
-                    case linkText: by = By.linkText(getIdentifier(xmlPageName, strElementName));
+                    case linkText:
+                        by = By.linkText(getIdentifier(xmlPageName, strElementName));
                         break;
-                    case id: by = By.id(getIdentifier(xmlPageName, strElementName));
+                    case id:
+                        by = By.id(getIdentifier(xmlPageName, strElementName));
                         break;
-                    case partialLinkText: by = By.partialLinkText(getIdentifier(xmlPageName, strElementName));
+                    case partialLinkText:
+                        by = By.partialLinkText(getIdentifier(xmlPageName, strElementName));
                         break;
-                    case tagName:  by = By.tagName(getIdentifier(xmlPageName, strElementName));
+                    case tagName:
+                        by = By.tagName(getIdentifier(xmlPageName, strElementName));
                         break;
-                    case className:  by = By.className(getIdentifier(xmlPageName, strElementName));
+                    case className:
+                        by = By.className(getIdentifier(xmlPageName, strElementName));
                         break;
                     default:
                         break;

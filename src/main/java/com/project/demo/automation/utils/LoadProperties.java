@@ -10,7 +10,8 @@ import java.util.Properties;
 public class LoadProperties {
 
     Properties properties = new Properties();
-    Logger log =Logger.getLogger(LoadProperties.class);
+    Logger log = Logger.getLogger(LoadProperties.class);
+
     public LoadProperties() {
         InputStream inputStream;
 
@@ -22,6 +23,7 @@ public class LoadProperties {
             log.error(e.getMessage());
         }
     }
+
     /**
      * Retrieve key value from the properties file
      *

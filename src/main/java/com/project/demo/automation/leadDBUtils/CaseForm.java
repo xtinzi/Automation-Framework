@@ -6,7 +6,7 @@ import java.util.List;
 public class CaseForm {
     //Test details
     private String testType;
-    private String testScenario="";
+    private String testScenario = "";
     //Case details
     private String firstNameValue;
     private String lastNameValue;
@@ -31,22 +31,21 @@ public class CaseForm {
 
     public CaseForm(List<String> caseFormIndices) {
         //test indices
-        int TEST_TYPE =1;
-        int TEST_SCENARIO=2;
+        int TEST_TYPE = 1;
+        int TEST_SCENARIO = 2;
         //tests indices
-        int FIRST_NAME_VALUE=3;
+        int FIRST_NAME_VALUE = 3;
         int LAST_NAME_VALUE = 4;
-        int USERNAME_VALUE =5;
+        int USERNAME_VALUE = 5;
         int PASSWORD_VALUE = 6;
-        int CUSTOMER_VALUE=7;
+        int CUSTOMER_VALUE = 7;
         int ROLE_VALUE = 8;
         int EMAIL_VALUE = 9;
         int CELLPHONE_VALUE = 10;
 
 
-
-        testType =caseFormIndices.get(TEST_TYPE);
-        testScenario =caseFormIndices.get(TEST_SCENARIO);
+        testType = caseFormIndices.get(TEST_TYPE);
+        testScenario = caseFormIndices.get(TEST_SCENARIO);
         firstNameValue = caseFormIndices.get(FIRST_NAME_VALUE);
         lastNameValue = caseFormIndices.get(LAST_NAME_VALUE);
         userNameValue = caseFormIndices.get(USERNAME_VALUE);
@@ -60,10 +59,11 @@ public class CaseForm {
 
     }
 
-    public CaseForm(List<String> caseFormIndices, boolean isChild){
+    public CaseForm(List<String> caseFormIndices, boolean isChild) {
 
 
     }
+
     public String getLastNameValue() {
         return lastNameValue;
     }
@@ -121,77 +121,8 @@ public class CaseForm {
     }
 
 
-    public String getClient() {
-        return client;
-    }
-
-    public void setClient(String client) {
-        this.client = client;
-    }
-
-    public String getCaseTopic() {
-        return caseTopic;
-    }
-
-    public void setEnquiryDetailsNotes(String enquiryDetailsNotes) {
-        this.enquiryDetailsNotes = enquiryDetailsNotes;
-    }
-    public String getEnquiryDetailsNotes() {
-        return enquiryDetailsNotes;
-    }
-    public void setLocation(String enquiryDetailsNotes) {
-        this.location = location;
-    }
-    public String getLocation() {
-        return location;
-    }
-    public void setHotelTourExperience(String hotelTourExperience) {
-        this.hotelTourExperience = hotelTourExperience;
-    }
-    public String getHotelTourExperience() {
-        return hotelTourExperience;
-    }
-    public void setSupplier(String supplier) {
-        this.supplier = supplier;
-    }
-    public String getSupplier() {
-        return supplier;
-    }
-    public void setSupplierReference(String supplierReference) {
-        this.supplierReference = supplierReference;
-    }
-    public String getSupplierReference() {
-        return supplierReference;
-    }
-    public void setBooked(String booked) {
-        this.booked = booked;
-    }
-    public String getBooked() {
-        return booked;
-    }
-    public void setProductType(String productType) {
-        this.productType = productType;
-    }
-    public String getProductType() {
-        return productType;
-    }
-    public String getEnquiryType() {
-        return enquiryType;
-    }
-    public void setEnquiryType(String enquiryType) {
-        this.enquiryType = enquiryType;
-    }
-
-
-    public void setCaseTopic(String caseTopic) {
-        this.caseTopic = caseTopic;
-    }
-
     public String getUserNameValue() {
         return userNameValue;
-    }
-    public void setUserNameValue(String userNameValue) {
-        this.userNameValue = userNameValue;
     }
 
     public String getFirstNameValue() {

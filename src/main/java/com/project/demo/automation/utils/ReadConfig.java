@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 
 public class ReadConfig {
-    private int lastRow=-1;
-    private int fromRow=-1;
-    private int upToRow=-1;
+    private int lastRow = -1;
+    private int fromRow = -1;
+    private int upToRow = -1;
 
 
-    public ReadConfig(ArrayList<String> configFields){
-        int LAST_ROW=0;
-        int FROM_ROW=1;
-        int UP_TO_ROW=2;
+    public ReadConfig(ArrayList<String> configFields) {
+        int LAST_ROW = 0;
+        int FROM_ROW = 1;
+        int UP_TO_ROW = 2;
         setLastRow(Integer.valueOf(configFields.get(LAST_ROW)));
         setFromRow(Integer.valueOf(configFields.get(FROM_ROW)));
         setUpToRow(Integer.valueOf(configFields.get(UP_TO_ROW)));

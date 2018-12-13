@@ -10,6 +10,5 @@ public class LocationConstants {
     public static final String PAGE_OBJECT_DIR =MAIN_FOLDER+"/Page Objects/";
     public static final String REPORT_DIRECTORY=MAIN_FOLDER+"/Report/";
     public static final String SCREEN_SHOTS_DIR =MAIN_FOLDER+"/Screen Shots/";
-    public static final String REQUEST_RESPONSE_DIRECTORY=MAIN_FOLDER+"/RequestResponseXml/";
 
 }

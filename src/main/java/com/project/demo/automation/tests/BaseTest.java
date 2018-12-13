@@ -200,7 +200,6 @@ public class BaseTest extends SeleniumService {
         }
         catch (Exception e){
             log.error("Adding people to arrayList Failed. " + e.getMessage());
-         //   getExtentTest().log(getLogStatus().FAIL, "Adding people to arrayList Failed." + getExtentTest().addScreenCapture(page.captureScreen()));
         }
 
         return people;
@@ -318,7 +317,7 @@ try {
     HttpURLConnection httpConn = (HttpURLConnection) connection;
     ByteArrayOutputStream bout = new ByteArrayOutputStream();
     String xmlInput =
-            " <soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:v1='http://www.firstrand.co.za/gts/pim/ChatService/SendMessage/v1' xmlns:v2='http://www.firstrand.co.za/gts/shared/enterpriseMessage/v2' xmlns:v7='http://www.firstrand.co.za/gts/cdm/customer/v7'>\n" +
+            " <soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:v1='' xmlns:v2='' xmlns:v7=''>\n" +
                     " <soapenv:Header/>\n" +
                     " <soapenv:Body>\n" +
                     " <v1:SendMessageRequest>\n" +

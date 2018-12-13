@@ -3,7 +3,7 @@ package com.project.demo.automation.utils;
 
 public class GenerateReports {
 
-   StringBuilder html = new StringBuilder();
+    StringBuilder html = new StringBuilder();
 
     public GenerateReports(String title) {
         html.append("<!doctype html>\n");
@@ -19,7 +19,6 @@ public class GenerateReports {
         html.append("<title>" + title + "</title>\n");
         html.append("</head>\n\n");
         html.append("<body>\n");
-        html.append("<img src=\"First_National_Bank_Logo.png\" alt=\\\"Smiley face\\\" height=\\\"143\\\" width=\\\"352\\>");
         html.append("<h1>" + title + "</h1>\n");
         html.append("<div class=\"style-table\" >\n");
         html.append("<table border=\"4px solid black\" style=\"width:50%\"  cellpadding=\"3\" cellspacing=\"0\">\n");
@@ -36,7 +35,7 @@ public class GenerateReports {
         html.append("</tr>\n");
     }
 
-    public String appendAdditionalData(String data){
+    public String appendAdditionalData(String data) {
         StringBuilder statTable = new StringBuilder();
 
         statTable.append("<table border=\"4px solid black\" style=\"width:50%\"  cellpadding=\"3\" cellspacing=\"0\">\n");

@@ -14,17 +14,18 @@ public class Person {
         this.name = name;
         this.lastName = lastName;
         this.userName = userName;
-        this.customer= customer;
+        this.customer = customer;
         this.role = role;
         this.email = email;
         this.cellPhone = cellPhone;
         Locked = locked;
     }
 
-    public Person(){
+    public Person() {
 
 
     }
+
     public String getName() {
         return name;
     }

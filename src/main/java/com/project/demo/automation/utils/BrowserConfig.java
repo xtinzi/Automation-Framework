@@ -22,24 +22,23 @@ public class BrowserConfig {
 
     protected static RetrieveTestData retrieveTestData;
     static String browserInstance = getSearchCriteria();
-    static Logger  log =Logger.getLogger(BrowserConfig.class);
+    static Logger log = Logger.getLogger(BrowserConfig.class);
 
     protected static WebDriver getDriver() {
 
         WebDriver driver = null;
 
-        if(browserInstance.equalsIgnoreCase(DriverConstants.CHROME)){
+        if (browserInstance.equalsIgnoreCase(DriverConstants.CHROME)) {
             File file = new File(DriverConstants.CHROME_DRIVER);
             System.setProperty(DriverConstants.CHROME_PROPERTY, file.getAbsolutePath());
-            System.out.println("Chrome location : "+file.getAbsolutePath());
+            System.out.println("Chrome location : " + file.getAbsolutePath());
             driver = new ChromeDriver();
 
-        }else  if(browserInstance.equalsIgnoreCase(DriverConstants.IE)){
+        } else if (browserInstance.equalsIgnoreCase(DriverConstants.IE)) {
             File file = new File(DriverConstants.IE_DRIVER);
             System.setProperty(DriverConstants.IE_PROPERTY, file.getAbsolutePath());
             driver = new InternetExplorerDriver();
-        }
-        else  if(browserInstance.equalsIgnoreCase(DriverConstants.FIREFOX)){
+        } else if (browserInstance.equalsIgnoreCase(DriverConstants.FIREFOX)) {
             File file = new File(DriverConstants.FIREFOX_DRIVER);
             System.setProperty(DriverConstants.FIREFOX_PROPERTY, file.getAbsolutePath());
             driver = new FirefoxDriver();
@@ -51,22 +50,24 @@ public class BrowserConfig {
         Chrome(1), InternetExplorer(2), Firefox(3);
 
         private int value;
+
         private Browser(int value) {
             this.value = value;
         }
     }
 
-    private static LoginDetail getLoginDetail(){
+    private static LoginDetail getLoginDetail() {
 
         retrieveTestData = new RetrieveTestData(LocationConstants.DATA_SHEET_FILE);
         LoginDetail loginDetail = retrieveTestData.getLoginDetail();
-        if(loginDetail==null){
-            loginDetail =retrieveTestData.getLoginDetail();
+        if (loginDetail == null) {
+            loginDetail = retrieveTestData.getLoginDetail();
         }
-        return  loginDetail;
+        return loginDetail;
     }
+
     public static String getSearchCriteria() {
-        String browser =getLoginDetail().getBrowser();
+        String browser = getLoginDetail().getBrowser();
         Browser searchCriteria = Browser.valueOf(browser);
         try {
             switch (searchCriteria) {
@@ -98,8 +99,8 @@ public class BrowserConfig {
         super();
     }
 
-    public DriverService getService(){
-        DriverService service =null;
+    public DriverService getService() {
+        DriverService service = null;
         try {
 
             if (browserInstance.equalsIgnoreCase(DriverConstants.CHROME)) {
@@ -111,15 +112,15 @@ public class BrowserConfig {
 
                 service = null;
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             log.error(ex.getMessage());
         }
         return service;
     }
 
-    public DesiredCapabilities getCapabilities(){
+    public DesiredCapabilities getCapabilities() {
 
-        if(browserInstance.equalsIgnoreCase(DriverConstants.CHROME)) {
+        if (browserInstance.equalsIgnoreCase(DriverConstants.CHROME)) {
             if (capabilities == null) {
                 capabilities = DesiredCapabilities.chrome();
                 //the following Chrome options handle the stability and security on newer Chrome drivers
@@ -131,12 +132,12 @@ public class BrowserConfig {
                 capabilities.setCapability("chrome.binary", "");
                 capabilities.setCapability(ChromeOptions.CAPABILITY, options);
             }
-        }else if(browserInstance.equalsIgnoreCase(DriverConstants.IE)){
+        } else if (browserInstance.equalsIgnoreCase(DriverConstants.IE)) {
             capabilities = DesiredCapabilities.internetExplorer();
             capabilities.setCapability("ignoreZoomSetting", true);
             capabilities.setCapability("enablePersistentHover", false);
 
-        }else{
+        } else {
             capabilities = DesiredCapabilities.firefox();
             capabilities.setCapability("marionette", true);
             capabilities = DesiredCapabilities.firefox();

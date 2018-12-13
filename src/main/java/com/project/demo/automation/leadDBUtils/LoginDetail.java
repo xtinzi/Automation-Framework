@@ -9,21 +9,20 @@ public class LoginDetail {
     private String password;
     private String browser;
 
-    public LoginDetail(){
+    public LoginDetail() {
 
     }
-    public LoginDetail(ArrayList<String> loginFields){
-        int TEST_ENVIRONMENT =0;
-        int USER_NAME =1;
-        int PASSWORD =2;
-        int BROWSER =3;
+
+    public LoginDetail(ArrayList<String> loginFields) {
+        int TEST_ENVIRONMENT = 0;
+        int USER_NAME = 1;
+        int PASSWORD = 2;
+        int BROWSER = 3;
 
         setTestEnvironment(loginFields.get(TEST_ENVIRONMENT));
         setUserName(loginFields.get(USER_NAME));
         setPassword(loginFields.get(PASSWORD));
         setBrowser(loginFields.get(BROWSER));
-
-
 
 
     }
@@ -35,6 +34,7 @@ public class LoginDetail {
     public void setTestEnvironment(String testEnvironment) {
         this.testEnvironment = testEnvironment;
     }
+
     public String getUserName() {
         return userName;
     }

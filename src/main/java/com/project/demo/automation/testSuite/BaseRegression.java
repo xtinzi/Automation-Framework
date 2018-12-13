@@ -12,30 +12,24 @@ import java.util.List;
 import java.util.Map;
 
 
-public class BaseRegression extends SeleniumService{
+public class BaseRegression extends SeleniumService {
     protected static LoadProperties regressionProperties;
-    protected String sheetPath="";
+    protected String sheetPath = "";
     ApplicationContext applicationContext;
+
     static {
         log = Logger.getLogger(BaseRegression.class);
     }
-    //Added Report_file_Smoke
-    public static GenerateReports reportingModule_smoke;
 
-    public BaseRegression(){
+
+    public BaseRegression() {
         regressionProperties = new LoadProperties();
         applicationContext = new ClassPathXmlApplicationContext("classpath:WEB-INF/spring/mini-xml-config-context.xml");
-        EnvironmentProperties environmentProperties =applicationContext.getBean(EnvironmentProperties.class);
+        EnvironmentProperties environmentProperties = applicationContext.getBean(EnvironmentProperties.class);
         createTestFiles(environmentProperties);
-        retrieveTestData =new RetrieveTestData(environmentProperties.getTestDatasheet());
-        sheetPath =environmentProperties.getTestDatasheet();
+        retrieveTestData = new RetrieveTestData(environmentProperties.getTestDatasheet());
+        sheetPath = environmentProperties.getTestDatasheet();
     }
-
-
-
-
-
-
 
 
     public void setRetrieveTestData(RetrieveTestData retrieveTestData) {
@@ -43,16 +37,9 @@ public class BaseRegression extends SeleniumService{
     }
 
 
-
-
-
-
-
-
     public RetrieveTestData getRetrieveTestData() {
         return retrieveTestData;
     }
-
 
 
 }

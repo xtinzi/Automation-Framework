@@ -29,46 +29,43 @@ public class BrowserUtil {
 
     public BrowserConfig getChromeService() {
 
-        DriverService service = new ChromeDriverService.Builder().usingDriverExecutable(new File(LocationConstants.DRIVER_DIR+ DriverConstants.CHROME_DRIVER)).usingAnyFreePort().build();
+        DriverService service = new ChromeDriverService.Builder().usingDriverExecutable(new File(LocationConstants.DRIVER_DIR + DriverConstants.CHROME_DRIVER)).usingAnyFreePort().build();
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--test-type");
         options.addArguments("--start-maximized");
         capabilities.setVersion("44");
-        capabilities.setCapability("chrome.binary",LocationConstants.DRIVER_DIR+ DriverConstants.CHROME_DRIVER);
-        capabilities.setCapability(ChromeOptions.CAPABILITY,options);
+        capabilities.setCapability("chrome.binary", LocationConstants.DRIVER_DIR + DriverConstants.CHROME_DRIVER);
+        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 
         return new BrowserConfig(service, capabilities, options);
     }
 
-    public BrowserConfig getInternetExplorerService()
-    {
-        DriverService service = new InternetExplorerDriverService.Builder().usingDriverExecutable(new File(LocationConstants.DRIVER_DIR+ DriverConstants.IE_DRIVER)).usingAnyFreePort().build();
+    public BrowserConfig getInternetExplorerService() {
+        DriverService service = new InternetExplorerDriverService.Builder().usingDriverExecutable(new File(LocationConstants.DRIVER_DIR + DriverConstants.IE_DRIVER)).usingAnyFreePort().build();
         DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
         ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
         ieCapabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
         ieCapabilities.setVersion("11.0");
-        ieCapabilities.setCapability("IE.binary",LocationConstants.DRIVER_DIR+ DriverConstants.IE_DRIVER);
+        ieCapabilities.setCapability("IE.binary", LocationConstants.DRIVER_DIR + DriverConstants.IE_DRIVER);
 
-        return new BrowserConfig(service,ieCapabilities);
+        return new BrowserConfig(service, ieCapabilities);
     }
 
-    public BrowserConfig getFireFoxService()
-    {
-        DriverService service = new InternetExplorerDriverService.Builder().usingDriverExecutable(new File(LocationConstants.DRIVER_DIR+ DriverConstants.FIREFOX_DRIVER)).usingAnyFreePort().build();
-        File file = new File(LocationConstants.DRIVER_DIR+ DriverConstants.FIREFOX_DRIVER);
+    public BrowserConfig getFireFoxService() {
+        DriverService service = new InternetExplorerDriverService.Builder().usingDriverExecutable(new File(LocationConstants.DRIVER_DIR + DriverConstants.FIREFOX_DRIVER)).usingAnyFreePort().build();
+        File file = new File(LocationConstants.DRIVER_DIR + DriverConstants.FIREFOX_DRIVER);
         FirefoxProfile firefoxProfile = new FirefoxProfile();
 
         try {
             firefoxProfile.addExtension(file);
-        }catch (IOException e)
-        {
+        } catch (IOException e) {
             e.getMessage();
         }
         DesiredCapabilities firefoxCapabilities = DesiredCapabilities.firefox();
-        firefoxCapabilities.setCapability("firefox.binary", LocationConstants.DRIVER_DIR+ DriverConstants.FIREFOX_DRIVER);
+        firefoxCapabilities.setCapability("firefox.binary", LocationConstants.DRIVER_DIR + DriverConstants.FIREFOX_DRIVER);
 
-        return new BrowserConfig(service ,firefoxCapabilities);
+        return new BrowserConfig(service, firefoxCapabilities);
     }
 
 }

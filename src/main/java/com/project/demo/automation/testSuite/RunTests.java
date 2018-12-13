@@ -18,12 +18,9 @@ public class RunTests extends BaseRegression {
             RunTests myTest = new RunTests();
             String from, to;
 
-            /*from = regressionProperties.getValueFromPropFile("tests_from");
-            to = regressionProperties.getValueFromPropFile("tests_to");*/
             try {
 
                 Class[] cls = {CombinedTests.class,};
-               // myTest.updateDatasheet("3", "3");
 
                 JUnitCore.runClasses(cls);
             } catch (Exception e) {
