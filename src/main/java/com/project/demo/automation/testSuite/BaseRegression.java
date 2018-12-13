@@ -21,6 +21,8 @@ public class BaseRegression extends SeleniumService {
         log = Logger.getLogger(BaseRegression.class);
     }
 
+    //Added Report_file_Smoke
+    public static GenerateReports reportingModule_smoke;
 
     public BaseRegression() {
         regressionProperties = new LoadProperties();

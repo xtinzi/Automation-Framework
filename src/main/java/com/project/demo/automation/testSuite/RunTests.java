@@ -15,9 +15,6 @@ public class RunTests extends BaseRegression {
 
     public static void main(String args[]) {
         try {
-            RunTests myTest = new RunTests();
-            String from, to;
-
             try {
 
                 Class[] cls = {CombinedTests.class,};

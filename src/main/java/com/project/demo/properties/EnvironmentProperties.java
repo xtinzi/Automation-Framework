@@ -21,11 +21,14 @@ public class EnvironmentProperties {
     public String getTestDatasheet() {
         return testDatasheet;
     }
-    public String getTestPageObjects(){return testPageObjects;}
+
+    public String getTestPageObjects() {
+        return testPageObjects;
+    }
 
     @Override
     public String toString() {
-        return "EnvironmentProperties [testUrl=" + testUrl +  " [datasheet[ "+testDatasheet+" ]";
+        return "EnvironmentProperties [testUrl=" + testUrl + " [datasheet[ " + testDatasheet + " ]";
     }
 
 }

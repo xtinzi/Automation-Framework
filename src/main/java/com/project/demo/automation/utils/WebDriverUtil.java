@@ -7,8 +7,7 @@ public class WebDriverUtil {
 
     protected WebDriver driver;
 
-    public WebDriverUtil (WebDriver driver)
-    {
+    public WebDriverUtil(WebDriver driver) {
         super();
     }
 

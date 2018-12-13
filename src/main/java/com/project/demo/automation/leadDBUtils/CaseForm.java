@@ -125,6 +125,10 @@ public class CaseForm {
         return userNameValue;
     }
 
+    public void setUserNameValue(String userNameValue) {
+        this.userNameValue = userNameValue;
+    }
+
     public String getFirstNameValue() {
         return firstNameValue;
     }

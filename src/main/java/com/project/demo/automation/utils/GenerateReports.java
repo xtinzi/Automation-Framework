@@ -3,7 +3,7 @@ package com.project.demo.automation.utils;
 
 public class GenerateReports {
 
-    StringBuilder html = new StringBuilder();
+   StringBuilder html = new StringBuilder();
 
     public GenerateReports(String title) {
         html.append("<!doctype html>\n");
@@ -35,7 +35,7 @@ public class GenerateReports {
         html.append("</tr>\n");
     }
 
-    public String appendAdditionalData(String data) {
+    public String appendAdditionalData(String data){
         StringBuilder statTable = new StringBuilder();
 
         statTable.append("<table border=\"4px solid black\" style=\"width:50%\"  cellpadding=\"3\" cellspacing=\"0\">\n");
