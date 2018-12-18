@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class CombinedTests extends BaseTest {
     String allBreedsURL = "/breeds/list/all";
     String retriverSubBreedsURL = "/breed/retriever/list";
-    String randomGoldenURL = "/retriever/golden/images/random";
+    String randomGoldenURL = "/breed/retriever/golden/images/random";
     String outputStringAllBreeds = "";
 
     static {
@@ -118,10 +118,10 @@ public class CombinedTests extends BaseTest {
                         setExtentTest(extentReports.startTest("Get All Breed list"));
                         printBreeds(allDogBreeds);
                     } catch (UnhandledAlertException ue) {
-                        getExtentTest().log(getLogStatus().FAIL, "Add new person  Test failed:  Unexpected Alert was Present." + getExtentTest().addScreenCapture(page.captureScreen()));
+                        getExtentTest().log(getLogStatus().FAIL, "Get All Breed list Test failed:  Unexpected Alert was Present." + getExtentTest().addScreenCapture(page.captureScreen()));
                         page.acceptAlert();
                     } catch (Throwable ex) {
-                        getExtentTest().log(getLogStatus().FAIL, "Add new person  Test failed:  Unexpected Alert was Present." + getExtentTest().addScreenCapture(page.captureScreen()));
+                        getExtentTest().log(getLogStatus().FAIL, "Get All Breed listTest failed:  Unexpected Alert was Present." + getExtentTest().addScreenCapture(page.captureScreen()));
                         log.error(ex.getMessage());
                     } finally {
                         extentReports.endTest(getExtentTest());
@@ -137,10 +137,10 @@ public class CombinedTests extends BaseTest {
                         }
 
                     } catch (UnhandledAlertException ue) {
-                        getExtentTest().log(getLogStatus().FAIL, "Add new person  Test failed:  Unexpected Alert was Present." + getExtentTest().addScreenCapture(page.captureScreen()));
+                        getExtentTest().log(getLogStatus().FAIL, "Check retriever from list Test failed:  Unexpected Alert was Present." + getExtentTest().addScreenCapture(page.captureScreen()));
                         page.acceptAlert();
                     } catch (Throwable ex) {
-                        getExtentTest().log(getLogStatus().FAIL, "Add new person  Test failed:  Unexpected Alert was Present." + getExtentTest().addScreenCapture(page.captureScreen()));
+                        getExtentTest().log(getLogStatus().FAIL, "Check retriever from list Test failed:  Unexpected Alert was Present." + getExtentTest().addScreenCapture(page.captureScreen()));
                         log.error(ex.getMessage());
                     } finally {
                         extentReports.endTest(getExtentTest());
