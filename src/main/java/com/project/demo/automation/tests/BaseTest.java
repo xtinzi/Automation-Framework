@@ -5,6 +5,7 @@ import com.project.demo.automation.leadDBUtils.CaseForm;
 
 import com.project.demo.automation.utils.PageNames;
 import com.project.demo.automation.utils.SeleniumService;
+import com.project.demo.automation.utils.Util;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 
@@ -14,6 +15,15 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
 import java.util.List;
+
+
+import com.consol.citrus.annotations.CitrusTest;
+import org.testng.annotations.Test;
+import scalaj.http.HttpResponse;
+import com.project.demo.wrappers.APIListResponse;
+import com.project.demo.wrappers.APIMapResponse;
+import com.project.demo.wrappers.APIStringResponse;
+
 
 public class BaseTest extends SeleniumService {
 
@@ -40,6 +50,7 @@ public class BaseTest extends SeleniumService {
     private String emailElement = "Email";
     private String cellphoneElement = "CellPhone";
     private String saveButtonElement = "SAVE BUTTON";
+    String baseUrl = "https://dog.ceo/api"; // breeds/list/all"
 
 
     private static boolean isExternalGridTest = false;
@@ -298,63 +309,9 @@ public class BaseTest extends SeleniumService {
         String response = "";
         try {
 
-            URL url = new URL(initialUrl);
-            URLConnection connection = url.openConnection();
-            String responseString = "";
-            HttpURLConnection httpConn = (HttpURLConnection) connection;
-            ByteArrayOutputStream bout = new ByteArrayOutputStream();
-            String xmlInput =
-                    " <soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:v1='' xmlns:v2='' xmlns:v7=''>\n" +
-                            " <soapenv:Header/>\n" +
-                            " <soapenv:Body>\n" +
-                            " <v1:SendMessageRequest>\n" +
-                            " <v2:header> \n" +
-                            " <v2:senderID></v2:senderID> \n" +
-                            " <v2:messageID></v2:messageID> \n" +
-                            " <v2:timestamp></v2:timestamp> \n" +
-                            " </v2:header> \n" +
-                            " <v1:customerKey> \n" +
-                            " </v1:customerKey> \n" +
-                            " <v1:type>TEXT_MSG</v1:type> \n" +
-                            " <v1:message>/v1:message> \n" +
-                            " </v1:SendMessageRequest> \n" +
-                            " </soapenv:Body> \n" +
-                            " </soapenv:Envelope>";
-
-            byte[] buffer;
-            buffer = xmlInput.getBytes();
-            try {
-                bout.write(buffer);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            byte[] b = bout.toByteArray();
-
-            // Set the appropriate HTTP parameters.
-            httpConn.setRequestProperty("Content-Length",
-                    String.valueOf(b.length));
-            httpConn.setRequestProperty("Content-Type", "application/json'");
-            httpConn.setRequestMethod("POST");
-            httpConn.setDoOutput(true);
-            httpConn.setDoInput(true);
-            OutputStream out = httpConn.getOutputStream();
-            //Write the content of the request to the outputstream of the HTTP Connection.
-            out.write(b);
-            out.close();
-            Logger log = Logger.getLogger(BaseTest.class);
-            log.info("************ Request Message***********");
-
-            //Read the response.
-            InputStreamReader isr =
-                    new InputStreamReader(httpConn.getInputStream());
-            BufferedReader in = new BufferedReader(isr);
-
-            //Write the SOAP message response to a String.
-            while ((responseString = in.readLine()) != null) {
-                response = response + responseString;
-                System.out.println("Test passed");
-
-            }
+            HttpResponse<String> responseMsg = httpGet(baseUrl + initialUrl);
+            assert (responseMsg.code() == 200);
+            response = responseMsg.body().toString();
         } catch (Exception e) {
             getExtentTest().log(getLogStatus().FAIL, "Get String Response Test Failed");
         }

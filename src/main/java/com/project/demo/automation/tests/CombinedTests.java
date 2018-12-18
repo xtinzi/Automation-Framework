@@ -2,17 +2,19 @@ package com.project.demo.automation.tests;
 
 import com.project.demo.automation.leadDBUtils.CaseForm;
 import com.project.demo.automation.utils.RetrieveTestData;
+import com.project.demo.wrappers.APIStringResponse;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.UnhandledAlertException;
+import scalaj.http.HttpResponse;
 
 import java.util.ArrayList;
 
 public class CombinedTests extends BaseTest {
-    String allBreedsURL = "https://dog.ceo/api/breeds/list/all";
-    String retriverSubBreedsURL = "https://dog.ceo/api/breed/retriever/list";
-    String randomGoldenURL = "https://dog.ceo/api/breed/retriever/golden/images/random";
+    String allBreedsURL = "/breeds/list/all";
+    String retriverSubBreedsURL = "/breed/retriever/list";
+    String randomGoldenURL = "/retriever/golden/images/random";
     String outputStringAllBreeds = "";
 
     static {
@@ -170,15 +172,29 @@ public class CombinedTests extends BaseTest {
 
                     try {
                         setExtentTest(extentReports.startTest("API request to produce a random image / link for the sub-breed 'golden'"));
-                        if (getStringCallStatus(randomGoldenURL).equalsIgnoreCase("success")) {
+                            String breed = "retriever";
+                            String subBreed = "golden";
+
+                            // https://dog.ceo/api/breed/retriever/golden/images
+                            String url = String.format("%s/breed/%s/%s/images/random", baseUrl, breed,subBreed);
+                            HttpResponse<String> response = httpGet(url);
+                            assert (response.code() == 200);
+
+                            APIStringResponse apiStringResponse = apiStringToString(response.body());
+                            assert (apiStringResponse.status.equals("success"));
+                            assert (apiStringResponse.message.length() > 0);
+
+                            // https://images.dog.ceo/breeds/retriever-golden/n02099601_10.jpg
+                            String imageUrl = apiStringResponse.message;
+
+                            // confirm text starts as a URL
+                            assert(imageUrl.matches("^(https|http).*$"));
+                            // confirm text ends in an image extension
+                            assert(imageUrl.matches(".*(jpg|png)$"));
                             getExtentTest().log(getLogStatus().PASS, " random image / link for the sub-breed 'golden' call was Successful");
                             getExtentTest().log(getLogStatus().PASS, "random image/link for the sub-breed 'golden' call returned: " + "<a href=" + getStringCallMessage(randomGoldenURL).replace("\\", "") + ">Click Link</a>");
 
 
-                        } else {
-                            getExtentTest().log(getLogStatus().FAIL, "random image / link for the sub-breed 'golden' call was NOT Successful");
-
-                        }
 
 
                     } catch (UnhandledAlertException ue) {

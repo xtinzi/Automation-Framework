@@ -1,5 +1,7 @@
 package com.project.demo.automation.utils;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.project.demo.automation.Page.AbstractPage;
 import com.project.demo.automation.Page.HomePage;
 import com.project.demo.automation.Page.Page;
@@ -9,6 +11,9 @@ import com.project.demo.automation.leadDBUtils.LoginDetail;
 import com.project.demo.environments.test.IntEnv;
 import com.project.demo.generic.GenericEnv;
 import com.project.demo.properties.EnvironmentProperties;
+import com.project.demo.wrappers.APIListResponse;
+import com.project.demo.wrappers.APIMapResponse;
+import com.project.demo.wrappers.APIStringResponse;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -26,6 +31,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import scalaj.http.Http;
+import scalaj.http.HttpResponse;
 
 import java.awt.*;
 import java.io.*;
@@ -318,7 +325,23 @@ public class SeleniumService extends TestCase {
             log.error(ex.getMessage());
         }
     }
+    public Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+    public HttpResponse<String> httpGet(String url) {
+        return Http.apply(url).asString();
+    }
+
+    public static APIMapResponse apiStringToObjectMap(String json) {
+        return new GsonBuilder().setPrettyPrinting().create().fromJson(json, APIMapResponse.class);
+    }
+
+    public static APIListResponse apiStringToObjectList(String json) {
+        return new GsonBuilder().setPrettyPrinting().create().fromJson(json, APIListResponse.class);
+    }
+
+    public static APIStringResponse apiStringToString(String json) {
+        return new GsonBuilder().setPrettyPrinting().create().fromJson(json, APIStringResponse.class);
+    }
     public static void moveFile(String inputPath, String inputFile, String outputPath) throws IOException {
         URL url = AbstractPage.class.getResource(inputPath);
         InputStream in = url.openStream();
